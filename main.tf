@@ -32,17 +32,10 @@ resource "aws_instance" "elastic_ip" {
 resource "aws_instance" "cloud_2021_instance" {
   ami             = var.ami["us-east-1"] # Choose an appropriate region for the instance
   instance_type   = var.instance_types[0] # Choose an instance type from the list
-  key_name        = aws_key_pair.cloud_2021.key_name
+  key_name        = "cloud_2021"
   vpc_security_group_ids = [module.security_groups.security_group_id["web_sg"]]
-  security_group  = [aws_security_group.cloud_2021_sg.id]
 
   tags = {
     Name = "cloud_2021"
   }
-}
-
-# Key Pair
-resource "aws_key_pair" "cloud_2021_key" {
-  key_name   = "cloud_2021"
-  public_key = file("~/.ssh/cloud_2021.pub")
 }
