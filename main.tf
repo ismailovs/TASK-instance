@@ -33,6 +33,7 @@ resource "aws_instance" "cloud_2021_instance" {
   ami             = var.ami["us-east-1"] # Choose an appropriate region for the instance
   instance_type   = var.instance_types[0] # Choose an instance type from the list
   key_name        = "cloud_2021"
+  subnet_id     = "subnet-0500f24e0c0b87e03"
   vpc_security_group_ids = [module.security_groups.security_group_id["web_sg"]]
 
   tags = {
